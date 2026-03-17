@@ -40,9 +40,9 @@ img_gen = ImageGenerator(HF_API_KEY)
 # Keyboards
 def get_main_menu_keyboard():
     keyboard = [
-        ["💬 Chat with AI"],
-        ["🎵 YouTube → Audio", "🔗 YouTube Video Link"],
-        ["🎨 Image Generator", "📲 Instagram Reel"]
+        ["💬 Chat with AI","🎨 Image Generator"],
+        ["🎵 YouTube → Audio", "🎥 YouTube → Video"],
+        ["📲 Instagram Reel Download"]
     ]
     return ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
 
