@@ -64,14 +64,11 @@ def get_help_text():
     return (
         "🤖 **Multi-Utility Bot Help**\n\n"
         "You can use the menu buttons below or these commands:\n\n"
-        "🎵 **Audio & Video**\n"
-        "• `/play <query/url>` - Download YouTube Audio\n"
-        "• `/video <query/url>` - Get YouTube Video Link\n"
-        "• `/ig <url>` - Get Instagram Reel Link\n\n"
-        "🎨 **Images**\n"
-        "• `/imagine <prompt>` - Generate AI Image\n\n"
-        "💬 **AI Chat**\n"
-        "• Just tap 'Chat with AI' to start talking.\n\n"
+        "🎵 **YouTube → Audio** - Download Audio\n"
+        "🎥 **YouTube → Video** - Direct Video Link\n"
+        "📲 **Instagram Reel Download** - Direct Reel Link\n\n"
+        "🎨 **Image Generator** - Generate AI Images\n"
+        "💬 **AI Chat** - Talk to AI assistant\n\n"
         "💡 **Tip**: If the menu disappears, type `/start` to bring it back!"
     )
 
@@ -393,7 +390,7 @@ def main():
         ],
         states={
             MAIN: [
-                MessageHandler(filters.Regex('^(💬 Chat with AI|🎵 YouTube → Audio|🔗 YouTube Video Link|🎨 Image Generator|📲 Instagram Reel)$'), menu_router),
+                MessageHandler(filters.Regex('^(💬 Chat with AI|🎵 YouTube → Audio|🎥 YouTube → Video|🎨 Image Generator|📲 Instagram Reel Download)$'), menu_router),
                 CallbackQueryHandler(main_menu_callback, pattern='^main_menu$'),
                 MessageHandler(filters.Regex('(?i)^(main|main menu)$'), main_menu_message)
             ],
