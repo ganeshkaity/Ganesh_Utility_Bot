@@ -130,13 +130,13 @@ async def menu_router(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=get_back_to_menu_keyboard()
         )
         return YT_WAIT
-    elif text == '🔗 YouTube Video Link':
+    elif text == '🎥 YouTube → Video':
         await update.message.reply_text(
             "Send a YouTube URL or video name. I'll get the direct video link for you.",
             reply_markup=get_back_to_menu_keyboard()
         )
         return YT_LINK
-    elif text == '📲 Instagram Reel':
+    elif text == '📲 Instagram Reel Download':
         await update.message.reply_text(
             "Send an Instagram Reel URL. I'll get the direct video link for you.",
             reply_markup=get_back_to_menu_keyboard()
