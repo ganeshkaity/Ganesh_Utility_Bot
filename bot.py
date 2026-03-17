@@ -40,9 +40,9 @@ img_gen = ImageGenerator(HF_API_KEY)
 # Keyboards
 def get_main_menu_keyboard():
     keyboard = [
-        ["💬 Chat with AI", "🎨 Image Generator"],
-        ["🎵 YouTube → Audio", "🔗 YouTube → Video"],
-        ["📲 Instagram Reel Downloader"]
+        ["💬 Chat with AI"],
+        ["🎵 YouTube → Audio", "🔗 YouTube Video Link"],
+        ["🎨 Image Generator", "📲 Instagram Reel"]
     ]
     return ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
 
@@ -148,6 +148,11 @@ async def menu_router(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=get_back_to_menu_keyboard()
         )
         return IMG_PROMPT
+    
+    # Help fallthrough for unknown text
+    else:
+        await update.message.reply_text(get_help_text(), parse_mode='Markdown', reply_markup=get_main_menu_keyboard())
+        return MAIN
 
 # --- CHAT FLOW ---
 async def chat_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -390,8 +395,7 @@ def main():
             MAIN: [
                 MessageHandler(filters.Regex('^(💬 Chat with AI|🎵 YouTube → Audio|🔗 YouTube Video Link|🎨 Image Generator|📲 Instagram Reel)$'), menu_router),
                 CallbackQueryHandler(main_menu_callback, pattern='^main_menu$'),
-                MessageHandler(filters.Regex('(?i)^(main|main menu)$'), main_menu_message),
-                MessageHandler(filters.TEXT & (~filters.COMMAND), help_command)
+                MessageHandler(filters.Regex('(?i)^(main|main menu)$'), main_menu_message)
             ],
             CHAT: [
                 MessageHandler(filters.TEXT & (~filters.COMMAND), chat_handler),
